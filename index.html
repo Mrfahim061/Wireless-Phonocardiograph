@@ -1,176 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Recorder</title>
     <style>
-        /* Body styles */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 40px;
-    background-color: #d8ccd4bd; /* Background color */
-  }
-  
-  /* Header styles */
-  h1 {
-    margin-top: 10px; /* Add space at the top of the page */
-    color: #fff; /* Text color */
-    background-color: #3498db; /* Background color */
-    padding: 20px; /* Add padding inside the block */
-    display: inline-block; /* Make the block inline */
-    border-radius: 10px; /* Rounded corners for the block */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow */
-    font-size: 36px; /* Font size */
-    font-weight: bold; /* Bold text */
-  }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+            background-color: #d8ccd4bd;
+        }
+
+        h1 {
+            color: #ff0000cc;
+            background-color: #ffffff;
+            padding: 15px;
+            display: inline-block;
+            border-radius: 10px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 40px;
+            font-weight:bolder;
+        }
 
 
-  h2 {
-    margin-top: 30px; /* Add space at the top of the page */
-    color: #d61414; /* Header text color */
-    margin-bottom: 10px; 
-  }
-  
-  /* Paragraph styles */
-  p {
-    color: #666; /* Paragraph text color */
-  }
-  
-  /* Record button styles */
-  #record {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #4fabd6; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #record:hover {
-    background-color: #005eaa; /* Button background color on hover */
-  }
-  
-  /* Visualizer styles */
-  #mic {
-    border: 1px solid #000000; /* Visualizer border */
-    border-radius: 4px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: #ffffffff; /* Visualizer background color */
-  }
-  
-  /* Recorded audio container styles */
-  #recordings {
-    margin: 50px 0;
-  }
-  
-  /* Button styles within the recorded audio container */
-  #recordings button {
-    padding: 10px 20px;
-    margin: 10px; /* Spacing between buttons */
-    background-color: #37ca99; /* Button background color */
-    color: #fff; /* Button text color */
-    font-size: 15px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #recordings button:hover {
-    background-color: #005eaa; /* Button background color on hover */
-  }
-  
-  /* Download link styles within the recorded audio container */
-  #recordings a {
-    display: block; /* Make the download link a block element */
-    margin-top: 10px; /* Spacing from the buttons */
-    color: #007acc; /* Link text color */
-    text-decoration: none;
-  }
-  
-  #recordings a:hover {
-    text-decoration: underline; /* Underline link on hover */
-  }
-  
-  /* Style the audio player container */
-  .audio-container {
-      max-width: 100px;
-      margin: 0 auto;
-      text-align: center;
-  }
+        h2 {
+            margin-top: 10px;
+            background-color: #8ee3f1;
+            color: #000000;
+            margin-bottom: 10px;
+        }
 
-  /* Style the audio player */
-  audio {
-      width: 20%;
-      border: 1px solid #ccc;
-      background-color: #f4f4f4;
-      padding: 10px;
-      border-radius: 5px;
-      outline: none;
-  }
+        h3 {
+            margin-top: 10px;
+            color: #d61414;
+            margin-bottom: 10px;
+        }
 
-  /* Style the audio controls */
-  audio::-webkit-media-controls-panel {
-      background-color: #ffffff;
-      border-radius: 10px;
-  }
+        /* Paragraph styles */
+        p {
+            color: #666;
+            /* Paragraph text color */
+        }
 
-  audio::-webkit-media-controls-play-button,
-  audio::-webkit-media-controls-pause-button {
-      background-color: #ece3e3; /* Background color */
-      color: #fff; /* Text color */
-      border-radius: 10px; /* Rounded corners */
-      padding: 10px; /* Padding around the controls */
-  }
+        /* Record button styles */
+        #record {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f44336;
+            /* Button background color */
+            color: #fff;
+            /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-  /* Style the "Start" button */
-  button[onclick="startRecording()"] {
-      background-color: #4CAF50; /* Green */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-      margin-right: 10px;
-  }
+        #record:hover {
+            background-color: #005eaa;
+            /* Button background color on hover */
+        }
 
-  /* Style the "Stop" button */
-  button[onclick="stopRecording()"] {
-      background-color: #f44336; /* Red */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-  }
+        /* Visualizer styles */
+        #mic {
+            border: 1px solid #000000;
+            /* Visualizer border */
+            border-radius: 4px;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #ffffffff;
+            /* Visualizer background color */
+        }
 
+        /* Recorded audio container styles */
+        #recordings {
+            margin: 50px 0;
+        }
+
+        /* Button styles within the recorded audio container */
+        #recordings button {
+            padding: 10px 20px;
+            margin: 10px;
+            /* Spacing between buttons */
+            background-color: #37ca99;
+            /* Button background color */
+            color: #fff;
+            /* Button text color */
+            font-size: 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #recordings button:hover {
+            background-color: #005eaa;
+        }
+
+        #recordings a {
+            display: block;
+            margin-top: 10px;
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        #recordings a:hover {
+            text-decoration: underline;
+        }
+
+        .audio-container {
+            max-width: 100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        audio {
+            width: 20%;
+            border: 1px solid #ccc;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-pause-button {
+            background-color: #ece3e3;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* Style the "Start" button */
+        button[onclick="startRecording()"] {
+            background-color: #4CAF50;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        /* Style the "Stop" button */
+        button[onclick="stopRecording()"] {
+            background-color: #f44336;
+            /* Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .table1 {
+            padding: 30px 110px;
+            background-color: lightgrey;
+            width: fit-content;
+            border-radius: 10%;
+            border-width: 5;
+        }
+
+        .table2 {
+            padding: 20px 100px;
+            background-color: lightgrey;
+            width: fit-content;
+            border-radius: 10%;
+            border-width: 5;
+        }
+
+        legend {
+            background-color: grey;
+            color: white;
+            font-size: larger;
+        }
+
+        .custom-info {
+            display: flex;
+            flex-direction: row;
+            justify-content:center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .visu {
+            justify-content:center;
+            background-color: lightgrey;
+            border-width: 5;
+        }
+
+        .listen{
+            background-color:#ece3e3 ;
+            border-width: 5;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Wireless Phonocardiograph</h1>
-    <h2>Press Record to start recording</h2>
-    <button id="record" >Record</button>
-    <div id="mic" style="border: 1px solid #ddd; border-radius: 4px; margin-top: 1rem"></div>
+    <div class="Main">
+        
+        <h1><img src="icon.jpg" width="50" height="40"> Wireless Phonocardiograph <img src="icon.jpg" width="50" height="40"></h1>
+    </div>
+    <div class="custom-info">
+        <fieldset class="table2">
+            <legend>
+                <center>Personal Information</center>
+            </legend>
 
-    <h2>Press Play button to start listening</h2>
+            Name :
+            <input type="text" name="Patient Name" size="20" maxlegth="30" placeholder="Name"><br><br>
 
-    <div id="audio-container">
-        <audio id="audio" controls></audio>
+            Father Name :
+            <input type="text" name="Father Name" size="20" maxlegth="30" placeholder="Father Name">
+            <br><br>
+
+            Mother Name :
+            <input type="text" name="Mother Name" size="20" maxlegth="30" placeholder="Mother Name">
+            <br><br>
+
+            Date of Birth:
+            <input type="date" name="date of birth" size="15" maxlegth="30"><br><br>
+
+            Phone Number:
+            <input type="text" name="text" size="15" maxlegth="30" placeholder="Phone Number">
+            <br><br>
+
+            Email :
+            <input type="email" name="Name" size="25" maxlegth="30" placeholder="Email"><br><br>
+        </fieldset>
+
+        <fieldset class="table1">
+            <legend>
+                <center>Patient Information</center>
+            </legend>
+
+            Patient ID:
+            <input type="text" name="text" size="15" maxlegth="30" placeholder="Patient ID">
+            <br><br>
+
+            Gender :
+            <input type="radio" name="gender" size="15" maxlegth="30">Male
+            <input type="radio" name="gender" size="15" maxlegth="30">Female<br><br>
+
+
+            Age :
+            <input type="text" name="Weight" size="20" maxlegth="30" placeholder="Age">
+            <br><br>
+
+            Weight :
+            <input type="text" name="Weight" size="20" maxlegth="30" placeholder="Weight">
+            <br><br>
+
+            Height :
+            <input type="text" name="Height" size="20" maxlegth="30" placeholder="Height">
+            <br><br>
+
+            <input type="button" value="Download Information" size="50">
+
+        </fieldset>
+    </div><br>
+
+    <div class="visu">
+        <fieldset>
+            <h2>Real-time visualizer</h2>
+            <h3>Press Record to start recording</h3>
+            <button id="record">Record</button>
+            <div id="mic" style="border: 1px solid #ddd; border-radius: 4px; margin-top: 1rem"></div>
+        </fieldset>
+    </div><br>
+
+
+
+    <div class="listen">
+        <fieldset>
+            <h2>Real-time listening</h2>
+            <h3>Press Play button to start listening</h3>
+
+            <div id="audio-container">
+                <audio id="audio" controls></audio>
+            </div>
+
+            <div id="button-container">
+                <button type="button" onclick="startRecording()">Start</button>
+                <button type="button" onclick="stopRecording()">Stop</button>
+            </div>
+        </fieldset>
     </div>
 
-    <div id="button-container">
-        <button type="button" onclick="startRecording()">Start</button>
-        <button type="button" onclick="stopRecording()">Stop</button>
-    </div>
-    
+
+
+
     <script type="module">
         // Record plugin
         import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
@@ -267,7 +396,8 @@ body {
         }
         navigator.mediaDevices.getUserMedia({ audio: true }).then(onSuccess, onError);
     </script>
-    
+
     <div id="recordings" style="margin: 1rem 0"></div>
 </body>
+
 </html>

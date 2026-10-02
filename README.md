@@ -1,132 +1,112 @@
-# Short Description (for the GitHub "About" field)
+# Wireless Phonocardiograph – Web Application
 
-Pick one of these:
+A browser-based interface for recording, visualizing, and listening to heart sounds (phonocardiogram, PCG) in real time from a low-cost Bluetooth wireless stethoscope.
 
-> **Option 1:** A web application for real-time visualization, listening, recording, and storing of heart sound (PCG) data from a low-cost wireless phonocardiograph device via Bluetooth.
+This web app is part of the work presented in:
 
-> **Option 2:** Low-cost wireless phonocardiograph web app — record, visualize, and listen to heart sounds in real time for early CVD screening. (IEEE ICEEICT 2024)
+> **Development of a Low-Cost Wireless Phonocardiograph using Bluetooth Module with a User Friendly Smartphone Application**
+> M. R. Fahim, A. S. Chowdhury, A. Ghosh, A. Hossan
+> 2024 6th International Conference on Electrical Engineering and Information & Communication Technology (ICEEICT), MIST, Dhaka, Bangladesh.
+> DOI: [10.1109/ICEEICT62016.2024.10534563](https://doi.org/10.1109/ICEEICT62016.2024.10534563)
 
----
+## Overview
 
-# README.md
+Cardiovascular disease (CVD) is a leading cause of death worldwide, and early screening is especially important in resource-limited settings. The hardware in this project combines a conventional stethoscope chest-piece, a sensitive condenser microphone, and a Bluetooth module (CSR8640) in a 3D-printed casing. Once paired with a laptop or smartphone, it works as a wireless audio input, and this web app turns that input into a simple phonocardiograph.
 
-Copy the content below into a file named `README.md`:
+## Features
 
-```markdown
-# 🫀 Wireless Phonocardiograph — Web Application
+- **Real-time visualizer**: live waveform of the heart sound while recording (WaveSurfer.js)
+- **Real-time listening**: hear the heart sound live through headphones or speakers while positioning the chest-piece
+- **Recording and playback**: record, replay, and download the recording as an audio file
+- **Patient information form**: fields for personal and patient details (name, ID, age, weight, height, etc.)
+- **No backend required**: everything runs in the browser, so it can be hosted as a static page (e.g., GitHub Pages)
 
-A browser-based application for **real-time visualization, listening, recording,
-and storing of phonocardiogram (PCG) data**, developed for a low-cost wireless
-phonocardiograph device built from a stethoscope chest-piece, a condenser
-microphone, and a Bluetooth module.
+## How It Works
 
-## 📋 Overview
+1. Pair the wireless stethoscope with your laptop or phone via Bluetooth.
+2. Open the web app and allow microphone access.
+3. Select the Bluetooth device as the audio input in your system or browser settings.
+4. Press **Record** to start the live waveform visualization and recording.
+5. Use **Start / Stop** under *Real-time listening* to hear the heart sound live.
+6. After stopping, use **Play** to review the recording and **Download recording** to save it for further analysis (e.g., filtering and heart-rate estimation in MATLAB).
 
-Cardiovascular diseases (CVDs) are the leading cause of death worldwide.
-Phonocardiography (PCG) records heart sounds non-invasively and offers a
-promising, low-cost approach for early CVD detection — especially in
-resource-limited settings.
+## Getting Started
 
-This web application connects to the wireless PCG device over Bluetooth and
-allows the user to:
+### Run locally
 
-- 📝 Enter and store patient information
-- 🎧 Listen to heart sounds in real time
-- 📈 Visualize the live heart sound waveform
-- 💾 Record and download PCG data for further analysis (e.g., MATLAB filtering)
-
-## ✨ Features
-
-- **Patient data entry** — personal and medical details (name, ID, age, gender, weight, height, contact info)
-- **Real-time visualizer** — live waveform rendering using [WaveSurfer.js v7](https://wavesurfer.xyz/) (Record plugin)
-- **Real-time listening** — instant audio playback via the browser's audio APIs
-- **Recording & storage** — record, replay, and download heart sound recordings
-- **Fully wireless** — works with any Bluetooth-paired laptop or smartphone
-- **No installation** — runs entirely in the browser; can be hosted free on GitHub Pages
-
-## 🛠️ Technology Stack
-
-| Component             | Technology                                          |
-|-----------------------|-----------------------------------------------------|
-| Structure             | HTML5                                               |
-| Styling               | CSS3                                                |
-| Interactivity         | JavaScript (ES6 modules)                            |
-| Waveform visualization| WaveSurfer.js v7 — Record plugin                    |
-| Audio capture         | MediaRecorder API / `getUserMedia`                  |
-| Companion hardware    | Bluetooth module (CSR8640), condenser microphone, stethoscope chest-piece |
-| Post-processing       | MATLAB (noise filtering, amplification, heart-rate estimation) |
-
-## 🚀 Getting Started
-
-### Prerequisites
-- A modern browser (Chrome, Edge, Firefox, Safari)
-- Microphone or Bluetooth audio input permission
-- The wireless PCG device paired with your computer/smartphone
-  (any microphone can be used for testing without the device)
-
-### Run Locally
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<your-username>/wireless-phonocardiograph-webapp.git
-   ```
-2. Open `index.html` in your browser (a local server is recommended).
-3. Allow microphone access when prompted.
-4. Press **Record** to start capturing heart sounds.
-
-> ⚠️ **Note:** Browsers only allow microphone access in a secure context
-> (HTTPS or `localhost`). Use GitHub Pages or a local server for full functionality.
-
-## 🩺 How It Works
-1. The chest-piece + microphone capture heart sounds acoustically.
-2. Audio is transmitted wirelessly over Bluetooth to the smart device.
-3. The web app records, visualizes, and plays the signal in real time.
-4. Recordings are downloaded and post-processed in MATLAB
-   (moving-average filtering, 1.5× amplification, peak-detection heart-rate counting).
-
-## 📊 Validation
-
-The system was tested on **30 subjects (15 male, 15 female)** and compared with a
-**BIOPAC MP36** data acquisition unit. Heart rates measured by both modalities were
-closely aligned, confirming the reliability of the low-cost setup.
-
-## 📄 Related Publication
-
-M. R. Fahim, A. S. Chowdhury, A. Ghosh, and A. Hossan,
-*"Development of a Low-Cost Wireless Phonocardiograph using Bluetooth Module with
-a User Friendly Smartphone Application,"* in **2024 6th International Conference on
-Electrical Engineering and Information & Communication Technology (ICEEICT)**,
-Dhaka, Bangladesh, 2024.
-DOI: [10.1109/ICEEICT62016.2024.10534563](https://doi.org/10.1109/ICEEICT62016.2024.10534563)
-
-## 📁 Repository Structure
-```
-├── index.html   # Main web application
-├── icon.jpg     # Application icon
-└── README.md    # Project documentation
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
 ```
 
-## 🤝 Acknowledgments
+Browsers only allow microphone access on `https://` or `localhost`, so opening the file directly may not work. Serve it with a local server instead:
 
-Department of Biomedical Engineering and Department of Electronics and
-Communication Engineering, Khulna University of Engineering & Technology (KUET),
-Bangladesh.
-
-## 📜 License
-
-This project is intended for academic and research purposes.
+```bash
+# Python 3
+python -m http.server 8000
 ```
 
----
+Then open `http://localhost:8000` in Chrome or Edge.
 
-# Quick Steps to Upload to GitHub
+### Host on GitHub Pages
 
-1. **Create a new repository** on GitHub (e.g., `wireless-phonocardiograph-webapp`).
-2. Paste the short description into the **Description** field.
-3. Click **Add file → Upload files** and upload:
-   - `index.html`
-   - `icon.jpg` *(required — your HTML references it)*
-   - `README.md` (the file above)
-4. Click **Commit changes**.
-5. *(Optional)* Enable **Settings → Pages → Deploy from branch** to host it live on GitHub Pages — this matches the "GitHub Page Hosting" step in your paper's software flow diagram. 🔗
+1. Push `index.html` (and `icon.jpg`) to the repository.
+2. Go to **Settings → Pages**.
+3. Under *Source*, choose the `main` branch and the root folder, then save.
+4. Your app will be available at `https://<your-username>.github.io/<your-repo>/`.
 
-**One tip:** since your README and app are public, make sure your IEEE paper's posting terms allow sharing — the ©2024 IEEE notice generally permits hosting the *application* but not the full PDF of the paper.
+## Project Structure
+
+```
+├── index.html    # Web application (HTML, CSS, JavaScript)
+├── icon.jpg      # Header icon
+└── README.md
+```
+
+## Tech Stack
+
+- HTML, CSS, JavaScript
+- [WaveSurfer.js v7](https://wavesurfer.xyz/) with the Record plugin (loaded from a CDN)
+- Web Audio / MediaRecorder APIs
+
+## Requirements
+
+- A modern browser (Chrome, Edge, or Firefox)
+- Microphone permission
+- Internet connection on first load (for the WaveSurfer.js CDN)
+- Bluetooth wireless stethoscope paired as an audio input (a built-in or USB microphone also works for testing)
+
+## Results
+
+The device was tested on 30 healthy adult volunteers (15 male, 15 female). Heart rates obtained from the recordings were closely aligned with those from a BIOPAC MP36 reference system. See the paper for details.
+
+## Limitations
+
+- Best performance in a quiet environment; noise and improper chest-piece placement can affect signal quality.
+- Fetal heart sound recording is affected by maternal heart sounds.
+- This tool is intended for research and educational purposes, **not** for clinical diagnosis.
+
+## Citation
+
+```bibtex
+@inproceedings{fahim2024wirelesspcg,
+  title     = {Development of a Low-Cost Wireless Phonocardiograph using Bluetooth Module with a User Friendly Smartphone Application},
+  author    = {Fahim, Mahabur Rahman and Chowdhury, Abu Shahid and Ghosh, Avishek and Hossan, Arif},
+  booktitle = {2024 6th International Conference on Electrical Engineering and Information \& Communication Technology (ICEEICT)},
+  year      = {2024},
+  doi       = {10.1109/ICEEICT62016.2024.10534563}
+}
+```
+
+## Authors
+
+- Mahabur Rahman Fahim
+- Abu Shahid Chowdhury
+- Avishek Ghosh
+- Arif Hossan
+
+Khulna University of Engineering & Technology (KUET), Khulna, Bangladesh.
+
+## License
+
+Add a license of your choice (e.g., MIT) in a `LICENSE` file.
